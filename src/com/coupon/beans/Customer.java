@@ -1,7 +1,6 @@
 package com.coupon.beans;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Customer {
 

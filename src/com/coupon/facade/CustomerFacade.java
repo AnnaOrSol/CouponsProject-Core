@@ -17,6 +17,7 @@ public class CustomerFacade implements CouponClientFacade {
 
 	private CustomerDAO customerDAO = null;
 	private CouponDAO couponDAO =null ; 
+	private Customer currentCustomer;
 	
 	public CustomerFacade() {
 		this.customerDAO = new CustomerDBDAO();
@@ -29,6 +30,7 @@ public class CustomerFacade implements CouponClientFacade {
 	public CouponClientFacade login(String name, String password, UserType userType) throws MyException {
 		if(customerDAO.login(name, password)) {
 			System.out.println("login customer seccessed!");
+			this.currentCustomer = customerDAO.getCustomerByName(name);
 			return this;
 		}
 		System.out.println("login customer failed");
@@ -36,33 +38,33 @@ public class CustomerFacade implements CouponClientFacade {
 		return null;
 	}
 	
-	public void purchaseCoupon (Coupon coupon , Customer customer) throws MyException
+	public void purchaseCoupon (Coupon coupon) throws MyException
 	{
 		try {
 			couponDAO.getCoupon(coupon.getId());
 		} catch (MyException e) {
 			throw new MyException ("there is a problem eith the database.");
 		}
-		customerDAO.customerPurchaseCoupon(coupon, customer);
+		customerDAO.customerPurchaseCoupon(coupon, currentCustomer);
 	}
 	
 	
-	public Collection<Coupon> getAllPurchasedCoupons(Customer customer) throws MyException {
+	public Collection<Coupon> getAllPurchasedCoupons() throws MyException {
 		
-			return customerDAO.getAllCoupons(customer.getId());
+			return customerDAO.getAllCoupons(currentCustomer.getId());
 			
 		
 	}
 	
 	
-	public Collection<Coupon> getAllPurchasedCouponsByType(Customer customer,CouponType couponType) throws MyException {
+	public Collection<Coupon> getAllPurchasedCouponsByType(CouponType couponType) throws MyException {
 		
-		return customerDAO.getCouponsByType(customer.getId() ,couponType);
+		return customerDAO.getCouponsByType(currentCustomer.getId() ,couponType);
 	}
 	
-	public Collection<Coupon> getAllPurchasedCouponsByPrice(Customer customer , double price) throws MyException {
+	public Collection<Coupon> getAllPurchasedCouponsByPrice(double price) throws MyException {
 		
-		return customerDAO.getCouponsByPrice(customer.getId() ,price);
+		return customerDAO.getCouponsByPrice(currentCustomer.getId() ,price);
 	}
 	
 	

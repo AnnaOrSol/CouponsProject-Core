@@ -22,7 +22,7 @@ import com.coupon.facade.CustomerFacade;
 import com.coupon.facade.UserType;
 
 public class Main {
-
+/*
 	
 	public static void main(String[] args) {
 		
@@ -208,4 +208,5 @@ public class Main {
 	
 
 	}
+	*/
 }

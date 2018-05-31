@@ -320,10 +320,10 @@ public class CustomerDBDAO implements CustomerDAO{
 				String message = rs.getString("message");
 				double price = rs.getDouble("price");
 				String image = rs.getString("image");
-				if (price == Selectedprice)
+				if (price >= Selectedprice)
 				{
-				coupon = new Coupon(id, title, startDate, endDate, amount, type, message, price, image);
-				allCoupons.add(coupon);
+					coupon = new Coupon(id, title, startDate, endDate, amount, type, message, price, image);
+					allCoupons.add(coupon);
 				}
 			}
 			

@@ -21,19 +21,19 @@ public interface CompanyDAO {
 	 * @throws MyException  Exception that is thrown if there was a problem with connection or with database.
 	 * This exception is also thrown if company already exists.
 	 */
-	public void createCompany(Company company) throws MyException;
-	
+	public void createCompany(Company company) throws MyException;	
 	public void removeCompany (Company company) throws MyException;
-	public void updateCompany(Company company) throws MyException;
-	
+	public void updateCompany(Company company) throws MyException;	
 	public Company getCompany (int id) throws MyException;
 	public ArrayList<Company> getAllCompanies() throws MyException;
+	
 	public void createCompanyCoupon(Coupon coupon, long companyId) throws MyException;
+
+	public ArrayList<Coupon> getAllCompanyCoupons(long id) throws MyException;
+
+	public Company getCompanyByName(String name) throws MyException;
+	
 	public boolean login (String compName,String password) throws MyException;
-
-	public ArrayList<Coupon> getAllCoupons(long id) throws MyException;
-
-	Company getCompanyByName(String name) throws MyException;
 	
 	
 	

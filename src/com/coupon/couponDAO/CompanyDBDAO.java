@@ -233,7 +233,7 @@ public class CompanyDBDAO implements CompanyDAO{
 	
 
 	@Override
-	public ArrayList<Coupon> getAllCoupons(long id) throws MyException {
+	public ArrayList<Coupon> getAllCompanyCoupons(long id) throws MyException {
 		ArrayList<Coupon> allCoupons= new ArrayList<Coupon>();
 		Connection con = null;	 
 		String query = "SELECT Coupon.* FROM company_coupon "

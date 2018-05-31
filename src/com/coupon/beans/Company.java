@@ -20,7 +20,6 @@ public class Company {
 		this.password = password;
 		this.email = email;
 		this.coupons = new ArrayList<Coupon>();
-
 	}
 
 	public long getId() {

@@ -8,7 +8,7 @@ public class Customer {
 	private long id;
 	private String custName;
 	private String password;
-	private Collection<Coupon> coupons;
+	private ArrayList<Coupon> coupons;
 
 	public Customer() {
 		this.coupons = new ArrayList<Coupon>();
@@ -45,7 +45,7 @@ public class Customer {
 		this.password = password;
 	}
 
-	public Collection<Coupon> getCoupons() {
+	public ArrayList<Coupon> getCoupons() {
 		return coupons;
 	}
 

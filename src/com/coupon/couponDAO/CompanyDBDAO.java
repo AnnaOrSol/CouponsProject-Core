@@ -250,8 +250,8 @@ public class CompanyDBDAO implements CompanyDAO{
 			{
 				Coupon coupon = null;
 				String title = rs.getString("title");
-				Date startDate = new Date(rs.getDate("start_date").getTime());
-				Date endDate = new Date(rs.getDate("end_date").getTime());
+				java.util.Date startDate = new java.util.Date(rs.getDate("start_date").getTime());
+				java.util.Date endDate = new java.util.Date(rs.getDate("end_date").getTime());
 				int amount = (int) rs.getDouble("amount");
 				CouponType type = CouponType.valueOf(rs.getString("type"));
 				String message = rs.getString("message");

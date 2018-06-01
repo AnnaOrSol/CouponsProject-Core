@@ -124,8 +124,8 @@ public class CouponDBDAO implements CouponDAO {
 		String query = "SELECT * FROM Coupon WHERE id=" + id;
 		Coupon a = null;
 		String title = null;
-		Date startDate = null;
-		Date endDate = null;
+		java.util.Date startDate = null;
+		java.util.Date endDate = null;
 		int amount = 0;
 		CouponType type = null;
 		String message = null;
@@ -139,8 +139,8 @@ public class CouponDBDAO implements CouponDAO {
 
 			if (rs.first()) {
 				title = rs.getString("title");
-				startDate = new Date(rs.getDate("start_date").getTime());
-				endDate = new Date(rs.getDate("end_date").getTime());
+				startDate = new java.util.Date(rs.getDate("start_date").getTime());
+				endDate = new java.util.Date(rs.getDate("end_date").getTime());
 				amount = (int) rs.getDouble("amount");
 				type = CouponType.valueOf(rs.getString("type"));
 				message = rs.getString("message");
@@ -168,8 +168,8 @@ public class CouponDBDAO implements CouponDAO {
 		ArrayList<Coupon> allCoupons = new ArrayList<Coupon>();
 		Connection con = null;
 		String title = null;
-		Date startDate = null;
-		Date endDate = null;
+		java.util.Date startDate = null;
+		java.util.Date endDate = null;
 		int amount = 0;
 		CouponType type = null;
 		String messege = null;
@@ -184,8 +184,8 @@ public class CouponDBDAO implements CouponDAO {
 			while (rs.next()) {
 				long id = rs.getLong("id");
 				title = rs.getString("title");
-				startDate = new Date(rs.getDate("start_date").getTime());
-				endDate = new Date(rs.getDate("end_date").getTime());
+				startDate = new java.util.Date(rs.getDate("start_date").getTime());
+				endDate = new java.util.Date(rs.getDate("end_date").getTime());
 				amount = (int) rs.getDouble("amount");
 				type = CouponType.valueOf(rs.getString("type"));
 				messege = rs.getString("message");
@@ -216,8 +216,8 @@ public class CouponDBDAO implements CouponDAO {
 		Connection con = null;
 
 		String title = null;
-		Date startDate = null;
-		Date endDate = null;
+		java.util.Date startDate = null;
+		java.util.Date endDate = null;
 		int amount = 0;
 		CouponType type = null;
 		String messege = null;
@@ -233,8 +233,8 @@ public class CouponDBDAO implements CouponDAO {
 			while (rs.next()) {
 				long id = rs.getLong("id");
 				title = rs.getString("title");
-				startDate = (rs.getDate("start_date"));
-				endDate = (rs.getDate("end_date"));
+				startDate =new java.util.Date( (rs.getDate("start_date")).getTime());
+				endDate = new java.util.Date((rs.getDate("end_date")).getTime());
 				amount = rs.getInt("amount");
 				type = CouponType.valueOf(rs.getString("type"));
 				messege = rs.getString("message");

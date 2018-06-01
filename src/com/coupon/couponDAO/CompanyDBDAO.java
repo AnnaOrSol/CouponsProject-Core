@@ -257,7 +257,7 @@ public class CompanyDBDAO implements CompanyDAO{
 				String message = rs.getString("message");
 				double price = rs.getDouble("price");
 				String image = rs.getString("image");
-				coupon = new Coupon(id, title, startDate, endDate, amount, type, message, price, image);
+				coupon = new Coupon(rs.getLong("id"), title, startDate, endDate, amount, type, message, price, image);
 				allCoupons.add(coupon);
 			}
 			

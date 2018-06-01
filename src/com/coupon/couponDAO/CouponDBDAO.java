@@ -94,7 +94,7 @@ public class CouponDBDAO implements CouponDAO {
 	@Override
 	public void updateCoupon(Coupon coupon) throws MyException {
 
-		String query = "UPDATE Coupon " + "SET end_date = '" + coupon.getEndDate() + "', price=" + coupon.getPrice()
+		String query = "UPDATE Coupon " + "SET end_date = '" + new java.sql.Date(coupon.getEndDate().getTime()) + "', price=" + coupon.getPrice()
 				+ " " + "WHERE id= " + coupon.getId();
 		Connection con = null;
 		int rowsAffected = 0;

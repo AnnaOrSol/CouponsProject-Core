@@ -223,7 +223,7 @@ public class CustomerDBDAO implements CustomerDAO {
 				String message = rs.getString("message");
 				double price = rs.getDouble("price");
 				String image = rs.getString("image");
-				coupon = new Coupon(id, title, startDate, endDate, amount, type, message, price, image);
+				coupon = new Coupon(rs.getLong("id"), title, startDate, endDate, amount, type, message, price, image);
 				allCoupons.add(coupon);
 			}
 
@@ -301,7 +301,7 @@ public class CustomerDBDAO implements CustomerDAO {
 				String message = rs.getString("message");
 				double price = rs.getDouble("price");
 				String image = rs.getString("image");
-				if (price >= Selectedprice) {
+				if (price <= Selectedprice) {
 					coupon = new Coupon(id, title, startDate, endDate, amount, type, message, price, image);
 					allCoupons.add(coupon);
 				}
@@ -346,7 +346,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			System.out.println("inserted successfully.");
 
 		} catch (SQLException e) {
-			throw new MyException("There is a problem with database.");
+			throw new MyException("There is a problem with database or coupon already purchased.");
 		} finally {
 			if (con != null) {
 				pool.returnConnection(con);

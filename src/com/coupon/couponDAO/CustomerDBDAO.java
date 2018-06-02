@@ -1,6 +1,5 @@
 package com.coupon.couponDAO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -330,12 +329,21 @@ public class CustomerDBDAO implements CustomerDAO {
 	 * @throws MyException
 	 */
 	public void customerPurchaseCoupon(Coupon coupon, Customer customer) throws MyException {
-		String query = "INSERT INTO customer_coupon (customer_id, coupon_id) VALUES (?,?)";
+		String query;
 		Connection con = null;
 		PreparedStatement preparedStmt;
 
 		try {
 			con = (Connection) pool.getConnection();
+			query = "SELECT * FROM Coupon WHERE id= " + coupon.getId();
+			ResultSet rs = con.createStatement().executeQuery(query);
+			if(rs.first()) {
+				if(rs.getInt("amount") == 0)
+					throw new MyException("Not enough coupons");
+			} else {
+				throw new MyException("Coupon does not exist");
+			}
+			query = "INSERT INTO customer_coupon (customer_id, coupon_id) VALUES (?,?)";
 			preparedStmt = (PreparedStatement) con.prepareStatement(query);
 
 			preparedStmt.setLong(1, customer.getId());
@@ -343,6 +351,8 @@ public class CustomerDBDAO implements CustomerDAO {
 
 			preparedStmt.execute();
 
+			query = "UPDATE Coupon SET amount = amount - 1 WHERE id= " + coupon.getId();
+			con.createStatement().executeUpdate(query);
 			System.out.println("inserted successfully.");
 
 		} catch (SQLException e) {

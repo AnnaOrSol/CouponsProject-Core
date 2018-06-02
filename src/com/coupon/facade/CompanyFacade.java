@@ -79,7 +79,7 @@ public class CompanyFacade implements CouponClientFacade {
 	public ArrayList<Coupon> getCouponsUpToDate(Date date) throws MyException {
 		ArrayList<Coupon> coupons = getAllCoupons(), couponsToSend = new ArrayList<>();
 		for (Coupon coupon : coupons) {
-			if(coupon.getEndDate().getTime() >= date.getTime())
+			if(coupon.getEndDate().getTime() <= date.getTime())
 				couponsToSend.add(coupon);
 		}
 		return couponsToSend;
@@ -88,7 +88,7 @@ public class CompanyFacade implements CouponClientFacade {
 	public ArrayList<Coupon> getCouponsUpToPrice(double price) throws MyException {
 		ArrayList<Coupon> coupons = getAllCoupons(), couponsToSend = new ArrayList<>();
 		for (Coupon coupon : coupons) {
-			if(coupon.getPrice() >= price)
+			if(coupon.getPrice() <= price)
 				couponsToSend.add(coupon);
 		}
 		return couponsToSend;
